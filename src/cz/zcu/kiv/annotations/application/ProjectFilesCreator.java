@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import plume.FileIOException;
 
 /**
  * ProjectFilesCreator creates a directory tree which includes
@@ -42,12 +43,11 @@ public class ProjectFilesCreator {
 
         pckgDirs.addAll(packageName.values());
 
-
         for(String item: pckgDirs){
             boolean created = createProjectDir(item);
             if (!created) {
-                
-                return null;
+                throw new FileIOException();
+                //return null;
             }
         }
 

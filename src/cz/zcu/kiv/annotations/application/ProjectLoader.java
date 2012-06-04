@@ -1,16 +1,11 @@
 package cz.zcu.kiv.annotations.application;
 
 import cz.zcu.kiv.annotations.data.IclassItem;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import cz.zcu.kiv.annotations.data.Project;
 import japa.parser.TokenMgrError;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 /**
  * Project Loader loads existing project or create a new one
@@ -25,7 +20,10 @@ public class ProjectLoader implements IprojectLoader{
     private LoadedAnnotSetter loadAnnot;
 
     public ProjectLoader() {
-
+        init();
+    }
+    
+    public void init(){
         classIGenerator = new ClassItemsGenerator();
         loadAnnot = new LoadedAnnotSetter();
     }
@@ -37,7 +35,7 @@ public class ProjectLoader implements IprojectLoader{
      * @return new ProjectData instance
      */
     public Project openExistingProject(File file) throws FileNotFoundException, Exception{
-
+            
             boolean sources = false;
 
             List<File> projectFiles = JarExtractor.extractJar(file, false);
@@ -74,7 +72,7 @@ public class ProjectLoader implements IprojectLoader{
     }
 
     public Project createProject(File jarFile, String packageName, boolean isSource) throws FileNotFoundException, Exception, TokenMgrError {
-        
+            init();
             List<File> projectFiles = JarExtractor.extractJar(jarFile, true);
             // copy project files
             List<File> projectFile = ProjectFilesCreator.createProjectFilesTree(projectFiles, packageName);
@@ -87,7 +85,7 @@ public class ProjectLoader implements IprojectLoader{
     }
 
     public Project createProject(Map<File, String> classes, boolean isSource) throws FileNotFoundException, Exception, NoClassDefFoundError {
-
+            init();
             Map <String, String> packageNames = new HashMap<String, String>();
             List <File> files = new ArrayList<File>();
 
@@ -112,7 +110,7 @@ public class ProjectLoader implements IprojectLoader{
     }
 
     /**
-     * Method opens packageName containig file and returns this value as String
+     * Method opens packageName containing file and returns this value as String
      *
      *
      * <ClassName><PackageName>
@@ -122,7 +120,6 @@ public class ProjectLoader implements IprojectLoader{
      * @throws FileNotFoundException
      */
     private Map<String, String> loadPckgName(File pckgFile) throws FileNotFoundException, ArrayIndexOutOfBoundsException {
-        
         Scanner input = new Scanner(pckgFile);
 
         Map<String, String> pckgNames = new HashMap<String, String>();
@@ -149,7 +146,6 @@ public class ProjectLoader implements IprojectLoader{
      * @return class files
      */
     private List<File> selectClasses(List<File> files) {
-
         List<File> classFiles = new ArrayList<File>();
 
         for (File file: files) {
@@ -169,7 +165,6 @@ public class ProjectLoader implements IprojectLoader{
      * @return Array of ini files
      */
     private String[] getAnnotIniFiles(List<File> projectFiles) {
-
         String[] iniFiles = new String[2];
 
         for (File fileIni: projectFiles) {

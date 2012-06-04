@@ -168,4 +168,10 @@ public class FileOperations {
         }
     }
 
+    static File renameDirectory(File temp) {
+        File file = new File(Constants.TEMP_PATH+"2");
+        temp.renameTo(file);
+        return file;
+    }
+
 }

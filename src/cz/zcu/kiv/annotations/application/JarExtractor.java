@@ -99,8 +99,8 @@ public class JarExtractor {
         File temp = new File(Constants.TEMP_PATH);
 
         if (temp.isDirectory()) {
-
-            FileOperations.deleteDirectory(temp);
+            File renameDirectory = FileOperations.renameDirectory(temp);
+            FileOperations.deleteDirectory(renameDirectory);
         }
         
         return temp.mkdir();
