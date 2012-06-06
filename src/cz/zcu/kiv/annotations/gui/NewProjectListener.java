@@ -263,7 +263,7 @@ public class NewProjectListener implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e) {
-        
+        master.disableNewProjectButton();
         int pPrepare = -1;
         File [] selected;
         String packageName = ""; 
@@ -353,7 +353,7 @@ public class NewProjectListener implements ActionListener{
         finally{
             master.setCursorCus(Cursor.getDefaultCursor());
         }
-    
+        master.enableNewProjectButton();
     }
     
     

@@ -483,5 +483,13 @@ public class MainWindow extends javax.swing.JFrame {
         down_all.setEnabled(false);
     }
     
+    public void disableNewProjectButton(){
+        NewProject.setEnabled(false);
+    }
+    
+    public void enableNewProjectButton(){
+        NewProject.setEnabled(true);
+    }
+    
 
 }
