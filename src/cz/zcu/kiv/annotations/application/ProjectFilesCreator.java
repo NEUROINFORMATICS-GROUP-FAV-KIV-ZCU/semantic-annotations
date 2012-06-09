@@ -97,7 +97,6 @@ public class ProjectFilesCreator {
      * @return boolean if creating was successfull
      */
     private static boolean createProjectDir(String packageName) {
-        System.gc();
         File rootDir = new File(Constants.ROOT_PATH);
         File originalDir = new File(Constants.ROOT_PATH + "/" + Constants.ORIG_FILES);
 

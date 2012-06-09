@@ -65,11 +65,12 @@ public class JarExtractor {
 
                 destStream.flush();
                 destStream.close();
+
                 files.add(outFile);
             }
             
         }
-
+        fileInputStream.close();
         zipStream.close();
         return files;
     }

@@ -111,7 +111,7 @@ public class NewProjectListener implements ActionListener{
         if(name == null){
             name = "default package"; // if there is no package set "name" to "default package"
         }
-
+        bufferedReader.close();
         return name;
     }
     
@@ -202,6 +202,7 @@ public class NewProjectListener implements ActionListener{
             name += "."+split[i];
         }
         System.out.println(name);
+        byteStream.close();
         return name;
     }
     

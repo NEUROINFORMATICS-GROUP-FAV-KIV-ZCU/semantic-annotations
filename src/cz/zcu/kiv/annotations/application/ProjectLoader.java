@@ -35,7 +35,6 @@ public class ProjectLoader implements IprojectLoader{
      * @return new ProjectData instance
      */
     public Project openExistingProject(File file) throws FileNotFoundException, Exception{
-            System.gc();
             boolean sources = false;
 
             List<File> projectFiles = JarExtractor.extractJar(file, false);
